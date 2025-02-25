@@ -1,0 +1,135 @@
+{
+  "name": "vscode-enhanced-search",
+  "displayName": "Enhanced Code Search",
+  "description": "一款增强 VS Code 的代码搜索插件，支持类、方法、文件和全局变量搜索",
+  "version": "1.0.13",
+  "publisher": "wonz",
+  "author": {
+    "name": "Wonz"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wonz5130/vscode-enhanced-search"
+  },
+  "bugs": {
+    "url": "https://github.com/Wonz5130/vscode-enhanced-search/issues"
+  },
+  "homepage": "https://github.com/Wonz5130/vscode-enhanced-search#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "search",
+    "code search",
+    "class search",
+    "method search",
+    "enhanced search"
+  ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onCommand:enhanced-search.openSearchPanel",
+    "onCommand:enhanced-search.searchClass",
+    "onCommand:enhanced-search.searchMethod",
+    "onCommand:enhanced-search.searchFile",
+    "onCommand:enhanced-search.searchGlobalVar"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "enhanced-search.openSearchPanel",
+        "title": "打开增强搜索面板",
+        "icon": "$(search)"
+      },
+      {
+        "command": "enhanced-search.searchClass",
+        "title": "搜索类定义",
+        "icon": "$(symbol-class)"
+      },
+      {
+        "command": "enhanced-search.searchMethod",
+        "title": "搜索方法",
+        "icon": "$(symbol-method)"
+      },
+      {
+        "command": "enhanced-search.searchFile",
+        "title": "搜索文件",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "enhanced-search.searchGlobalVar",
+        "title": "搜索全局变量",
+        "icon": "$(symbol-variable)"
+      },
+      {
+        "command": "enhanced-search.openFromSidebar",
+        "title": "Open Enhanced Search",
+        "category": "Enhanced Search"
+      },
+      {
+        "command": "enhanced-search.openSearchPanel",
+        "title": "Open Enhanced Search",
+        "icon": "images/icon.svg"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "enhanced-search.openSearchPanel",
+        "key": "ctrl+shift+f12",
+        "mac": "cmd+shift+f12"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "enhanced-search",
+          "title": "Enhanced Search",
+          "icon": "images/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "enhanced-search": [
+        {
+          "id": "enhanced-search-view",
+          "name": "Enhanced Search",
+          "type": "webview"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "enhanced-search.openSearchPanel",
+          "group": "navigation",
+          "when": "view == enhanced-search-view"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
